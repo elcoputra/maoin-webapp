@@ -1,66 +1,79 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import BackgroundImageHeader from '../../img/hero-image-compressed.jpg';
+
 import { Grid, Typography } from '@material-ui/core';
 
-class heroHome extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      widthViewPort: 0,
-      heightViewPort: 0,
-    };
-  }
+import BackgroundImageHeader from '../../img/hero-image-compressed.jpg';
+import Gojek from '../../img/gojek.svg';
+import Grab from '../../img/grab.svg';
 
-  componentDidMount() {
-    window.addEventListener('resize', this.handleViewPort);
-    this.setState({
-      widthViewPort: window.innerWidth,
-      heightViewPort: window.innerHeight,
-    });
-  }
-  componentWillUnmount() {
-    window.onscroll = null;
-    window.removeEventListener('resize', this.handleViewPort);
-  }
-  handleViewPort = () => {
-    this.setState({
-      widthViewPort: window.innerWidth,
-      heightViewPort: window.innerHeight,
-    });
-  };
-  render() {
-    const { classes } = this.props;
-    const { rootGridCoulmn, jargonGridRow, infoPesanGridColumn, gojegGrabGridRow, iconContactGrabGridRow } = this.gridConf;
+import PlaceIcon from '@material-ui/icons/Place';
+import PhoneIcon from '@material-ui/icons/Phone';
+import InstagramIcon from '@material-ui/icons/Instagram';
+
+class heroHome extends Component {
+  render(props) {
+    const { classes, widthViewPort, heightViewPort } = this.props;
+    const {
+      rootGridCoulmn,
+      jargonGridRow,
+      infoPesanGridColumn,
+      gojegGrabGridRow,
+      iconContactGrabGridRow,
+      iconContact,
+    } = this.gridConf;
+    console.log('width: ', widthViewPort, 'height: ', heightViewPort);
     return (
       <div className={classes.heroHomeContainer}>
         <div className={classes.heroMask}>
           <div className={classes.heroContent}>
             <Grid container {...rootGridCoulmn}>
-              <Grid item>
-                <Typography className={this.state.widthViewPort <= 600 ? classes.heroTitleMobile : classes.heroTitle}>
-                  Ma'Oin
-                </Typography>
-              </Grid>
+              {heightViewPort >= 420 || widthViewPort >= 400 ? (
+                <Grid item>
+                  <Typography
+                    className={widthViewPort <= 600 || heightViewPort <= 600 ? classes.heroTitleMobile : classes.heroTitle}
+                  >
+                    Ma'Oin
+                  </Typography>
+                </Grid>
+              ) : null}
               <Grid item>
                 <Grid container {...jargonGridRow}>
                   <Grid item>
-                    <div className={this.state.widthViewPort <= 600 ? classes.jargonContainerMobile : classes.jargonContainer}>
-                      <Typography className={this.state.widthViewPort <= 600 ? classes.jargonTypoMobile : classes.jargonTypo}>
+                    <div
+                      className={
+                        widthViewPort <= 600 || heightViewPort <= 600 ? classes.jargonContainerMobile : classes.jargonContainer
+                      }
+                    >
+                      <Typography
+                        className={widthViewPort <= 600 || heightViewPort <= 600 ? classes.jargonTypoMobile : classes.jargonTypo}
+                      >
                         Enak
                       </Typography>
                     </div>
                   </Grid>
                   <Grid item>
-                    <div className={this.state.widthViewPort <= 600 ? classes.jargonContainerMobile : classes.jargonContainer}>
-                      <Typography className={this.state.widthViewPort <= 600 ? classes.jargonTypoMobile : classes.jargonTypo}>
+                    <div
+                      className={
+                        widthViewPort <= 600 || heightViewPort <= 600 ? classes.jargonContainerMobile : classes.jargonContainer
+                      }
+                    >
+                      <Typography
+                        className={widthViewPort <= 600 || heightViewPort <= 600 ? classes.jargonTypoMobile : classes.jargonTypo}
+                      >
                         Murah
                       </Typography>
                     </div>
                   </Grid>
                   <Grid item>
-                    <div className={this.state.widthViewPort <= 600 ? classes.jargonContainerMobile : classes.jargonContainer}>
-                      <Typography className={this.state.widthViewPort <= 600 ? classes.jargonTypoMobile : classes.jargonTypo}>
+                    <div
+                      className={
+                        widthViewPort <= 600 || heightViewPort <= 600 ? classes.jargonContainerMobile : classes.jargonContainer
+                      }
+                    >
+                      <Typography
+                        className={widthViewPort <= 600 || heightViewPort <= 600 ? classes.jargonTypoMobile : classes.jargonTypo}
+                      >
                         Bersih
                       </Typography>
                     </div>
@@ -69,9 +82,15 @@ class heroHome extends Component {
               </Grid>
               <Grid item>
                 <div
-                  className={this.state.widthViewPort <= 600 ? classes.shortAboutMobileContainer : classes.shortAboutContainer}
+                  className={
+                    widthViewPort <= 600 || heightViewPort <= 600
+                      ? classes.shortAboutMobileContainer
+                      : classes.shortAboutContainer
+                  }
                 >
-                  <Typography className={this.state.widthViewPort <= 600 ? classes.shortAboutMobile : classes.shortAbout}>
+                  <Typography
+                    className={widthViewPort <= 600 || heightViewPort <= 600 ? classes.shortAboutMobile : classes.shortAbout}
+                  >
                     Ma’Oin adalah rumah makan ayam bakar & goreng, tetapi banyak menu lain yang berhubungan dengan makanan sunda
                     dan kekinian.
                   </Typography>
@@ -79,18 +98,119 @@ class heroHome extends Component {
               </Grid>
               <Grid item>
                 <Grid container {...infoPesanGridColumn}>
-                  <Grid item>Dapat Di Pesan Di:</Grid>
+                  <Grid item>
+                    <div
+                      className={
+                        widthViewPort <= 600 || heightViewPort <= 600
+                          ? classes.titleContactMobileContainer
+                          : classes.titleContactContainer
+                      }
+                    >
+                      <Typography
+                        className={
+                          widthViewPort <= 600 || heightViewPort <= 600
+                            ? classes.titleContactMobileTypo
+                            : classes.titleContactTypo
+                        }
+                      >
+                        Dapat Di Pesan Di:
+                      </Typography>
+                    </div>
+                  </Grid>
                   <Grid item>
                     <Grid container {...iconContactGrabGridRow}>
-                      <Grid item>Alamat</Grid>
-                      <Grid item>Nomer Hp</Grid>
-                      <Grid item>Instagram</Grid>
+                      <Grid item>
+                        <Grid container {...iconContact}>
+                          <Grid item className={classes.gridItemIcon}>
+                            <PlaceIcon />
+                          </Grid>
+                          <Grid item>
+                            <Typography
+                              className={
+                                widthViewPort <= 600 || heightViewPort <= 600
+                                  ? classes.contactIconTypoMobile
+                                  : classes.contactIconTypo
+                              }
+                            >
+                              Jl. Cihampelas No.216
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item>
+                        <Grid container {...iconContact}>
+                          <Grid item className={classes.gridItemIcon}>
+                            <PhoneIcon />
+                          </Grid>
+                          <Grid item>
+                            <Typography
+                              className={
+                                widthViewPort <= 600 || heightViewPort <= 600
+                                  ? classes.contactIconTypoMobile
+                                  : classes.contactIconTypo
+                              }
+                            >
+                              082119716257
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item>
+                        <Grid container {...iconContact}>
+                          <Grid item className={classes.gridItemIcon}>
+                            <InstagramIcon />
+                          </Grid>
+                          <Grid item>
+                            <Typography
+                              className={
+                                widthViewPort <= 600 || heightViewPort <= 600
+                                  ? classes.contactIconTypoMobile
+                                  : classes.contactIconTypo
+                              }
+                            >
+                              maoin_cihampelas
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
                     </Grid>
                   </Grid>
                   <Grid item>
                     <Grid container {...gojegGrabGridRow}>
-                      <Grid item>Gojek</Grid>
-                      <Grid item>Grab</Grid>
+                      <Grid item>
+                        <div
+                          className={
+                            widthViewPort <= 600 || heightViewPort <= 600
+                              ? classes.containerMerchantMobile
+                              : classes.containerMerchant
+                          }
+                        >
+                          <img
+                            className={
+                              widthViewPort <= 600 || heightViewPort <= 600 ? classes.imgMerchantMobile : classes.imgMerchant
+                            }
+                            src={Gojek}
+                            alt='Gojek'
+                          />
+                        </div>
+                      </Grid>
+                      <Grid item>
+                        <div
+                          className={
+                            widthViewPort <= 600 || heightViewPort <= 600
+                              ? classes.containerMerchantMobile
+                              : classes.containerMerchant
+                          }
+                        >
+                          <img
+                            className={
+                              widthViewPort <= 600 || heightViewPort <= 600 ? classes.imgMerchantMobile : classes.imgMerchant
+                            }
+                            src={Grab}
+                            alt='Grab'
+                          />
+                        </div>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -120,7 +240,7 @@ class heroHome extends Component {
       alignItems: 'center',
     },
     iconContactGrabGridRow: {
-      spacing: 3,
+      spacing: 1,
       direction: 'row',
       justify: 'center',
       alignItems: 'center',
@@ -129,6 +249,12 @@ class heroHome extends Component {
       spacing: 3,
       direction: 'row',
       justify: 'center',
+      alignItems: 'center',
+    },
+    iconContact: {
+      spacing: 1,
+      direction: 'row',
+      justify: 'flex-start',
       alignItems: 'center',
     },
   };
@@ -199,12 +325,42 @@ const styles = {
   },
   jargonTypoMobile: { textAlign: 'center', fontSize: 18 },
   jargonTypo: { textAlign: 'center', fontSize: 24 },
+  titleContactMobileContainer: { marginBottom: 5 },
+  titleContactContainer: { marginBottom: 10 },
+  titleContactMobileTypo: { fontSize: 18, fontWeight: 'bold' },
+  titleContactTypo: { fontSize: 24, fontWeight: 'bold' },
+  contactIconTypoMobile: { textAlign: 'center' },
+  contactIconTypo: { textAlign: 'center' },
+  iconContactContainer: { height: 30, display: 'flex', justifyContent: 'center', alignItems: 'center' },
+  gridItemIcon: { display: 'flex', justifyContent: 'center' },
+  containerMerchantMobile: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    marginTop: 20,
+    borderRadius: 10,
+    width: 100,
+    height: 30,
+  },
+  containerMerchant: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    marginTop: 20,
+    borderRadius: 10,
+    width: 180,
+    height: 50,
+  },
+  imgMerchantMobile: { width: '90%', maxHeight: '100%' },
+  imgMerchant: { width: '90%', maxHeight: '100%' },
   bottomGradient: {
     position: 'absolute',
     bottom: '0px',
     left: '0px',
     width: '100%',
-    height: 200,
+    height: 50,
     background: 'linear-gradient(0deg, rgba(59,59,59,1) 0%, rgba(59,59,59,0) 100%)' /* FF3.6+ */,
   },
 };

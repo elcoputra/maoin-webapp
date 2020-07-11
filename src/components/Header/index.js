@@ -51,17 +51,17 @@ class index extends Component {
   render() {
     const { rootGrid, gridContainerMenu } = this.gridConf;
     const { classes } = this.props;
-    console.log(this.state.widthViewPort);
+
     return (
       <>
         <AppBar className={this.state.scrolling >= 100 ? classes.appBarScrolling : classes.appBar}>
-          <Toolbar className={classes.toolBar}>
+          <Toolbar className={this.state.widthViewPort <= 600 ? classes.toolBarMobile : classes.toolBar}>
             <Grid container {...rootGrid}>
               <Grid item>
                 <LogoBrand className={classes.test} />
               </Grid>
               <Grid item>
-                {this.state.widthViewPort <= 600 ? (
+                {this.state.widthViewPort <= 600 || this.state.heightViewPort <= 600 ? (
                   <MenuIcon className={classes.iconMenu} />
                 ) : (
                   <Grid container {...gridContainerMenu}>
@@ -110,6 +110,12 @@ const styles = {
   toolBar: {
     marginLeft: '10%',
     marginRight: '10%',
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
+  toolBarMobile: {
+    marginLeft: '5%',
+    marginRight: '5%',
     paddingLeft: 0,
     paddingRight: 0,
   },
