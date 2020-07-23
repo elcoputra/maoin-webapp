@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-import AppBar from '../components/Header';
 import HeroHome from '../components/Hero/heroHome';
+import NewsCard from '../components/NewsCard/newsCard';
 
 class Home extends Component {
   constructor(props) {
@@ -38,7 +38,11 @@ class Home extends Component {
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <HeroHome widthViewPort={this.state.widthViewPort} heightViewPort={this.state.heightViewPort} />
-        <div className={this.state.widthViewPort <= 600 ? classes.contentMobileContainer : classes.contentContainer}>asdw</div>
+        <div className={this.state.widthViewPort <= 600 ? classes.contentMobileContainer : classes.contentContainer}>
+          <NewsCard />
+          <NewsCard />
+          <NewsCard />
+        </div>
       </div>
     );
   }
